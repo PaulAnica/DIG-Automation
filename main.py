@@ -20,7 +20,9 @@ async def root():
 
 @app.post("/form-submission")
 async def form_submission(form: GmailFormData):
-
-    return JSONResponse(content={"status": "received"}, status_code=200)
+    print(form.firstName, form.lastName, form.email, form.phoneNumber, form.eventName, form.tags)
+    form_dict = form.model_dump()
+    print("As dictionary:", form_dict)
+    return JSONResponse(content={"status": "received", "data": form_dict}, status_code=200)
 
 
